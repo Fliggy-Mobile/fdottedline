@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/fdottedline.iml" filepath="$PROJECT_DIR$/fdottedline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/fdottedline_android.iml" filepath="$PROJECT_DIR$/android/fdottedline_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/android/fdottedline_example_android.iml" filepath="$PROJECT_DIR$/example/android/fdottedline_example_android.iml" />
+    </modules>
+  </component>
+</project>
