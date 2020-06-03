@@ -1,8 +1,8 @@
 name: fdottedline
-description: A new Flutter plugin.
-version: 0.0.1
-author:
-homepage:
+description: Help developers realize the dotted line in the simplest way.
+version: 1.1.0
+author: CoorChice<coorchice.cb@alibaba-inc.com>
+homepage: https://github.com/Fliggy-Mobile/fdottedline
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -24,9 +24,9 @@ flutter:
   # The androidPackage and pluginClass identifiers should not ordinarily
   # be modified. They are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
-  plugin:
-    androidPackage: com.taobao.trip.fdottedline
-    pluginClass: FdottedlinePlugin
+#  plugin:
+#    androidPackage: com.taobao.trip.fdottedline
+#    pluginClass: FdottedlinePlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
