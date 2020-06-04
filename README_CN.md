@@ -9,11 +9,11 @@
 
 <div align="center">
 
-<p>Use the easiest way to create a dotted line view 👀!</p>
+<p>用最简单的方式来创建虚线视图吧 👀 ！</p>
 
-<p>[FDottedLine] provides developers with the ability to create dashed lines. It also supports creating a dashed border for a [Widget]. Support for controlling the thickness, spacing, and corners of the dotted border.</p>
+<p>[FDottedLine] 为开发者提供了创建虚线的能力。同时支持为一个 [Widget] 创建虚线边框。支持控制虚线的粗细，间距，以及虚线边框的边角。</p>
 
-<p><strong>Author：<a href="https://github.com/chenBingX">Newton</a>(<a href="coorchice.cb@alibaba-inc.com">coorchice.cb@alibaba-inc.com</a>)</strong></p>
+<p><strong>主理人：<a href="https://github.com/chenBingX">纽特</a>(<a href="coorchice.cb@alibaba-inc.com">coorchice.cb@alibaba-inc.com</a>)</strong></p>
 
 <p>
 
@@ -48,43 +48,47 @@
 
 </div>
 
+
 <p align="center">
   <a href="https://github.com/Fliggy-Mobile">
     <img height="720" src="https://gw.alicdn.com/tfs/TB182cqI.z1gK0jSZLeXXb9kVXa-1380-1282.png">
   </a>
 </p>
 
-**English | [简体中文](https://github.com/Fliggy-Mobile/fdottedline/blob/master/README_CN.md)**
+**[English](https://github.com/Fliggy-Mobile/fdottedline) | 简体中文**
 
-> Like it? Please cast your **Star**  🥰 ！
+> 感觉还不错？请投出您的 **Star** 吧 🥰 ！
 
-# ✨ Features
+# ✨ 特性
 
-- Supports dotted lines in both horizontal and vertical directions
+- 同时支持水平、垂直两个方向的虚线
 
-- Support to create dashed shapes
+- 支持创建虚线形状
 
-- Provide super easy way to add dotted border to **Widget**
+- 提供超简单的方式为  **Widget**  添加虚线边框
 
-- Support creating flexible dotted corner effects
+- 支持创建灵活的虚线边角效果
 
-## ⚙️ Parameter & Interface
+# 🛠 使用指南
 
-### 🔩 FDottedLine param
 
-|Param|Type|Necessary|Default|desc|
+## ⚙️ 参数 & 接口
+
+### 🔩 FDottedLine 参数
+
+|参数|类型|必要|默认值|说明|
 |---|---|:---:|---|---|
-|color|Color|false|`Colors.black`|Dotted line color|
-|height|double|false|null|height. If there is only [height] and no [width], you will get a dotted line in the vertical direction.If there are both [width] and [height], you will get a dotted border.|
-|width|double|false|null|width. If there is only [width] and no [height], you will get a dotted line in the horizontal direction.If there are both [width] and [height], you will get a dotted border.|
-|strokeWidth|double|false|1.0|The thickness of the dotted line|
-|dottedLength|double|false|5.0|The length of each small segment in the dotted line|
-|space|double|false|3.0|The distance between each segment in the dotted line|
-|corner|FDottedLineCorner|false|null|The corners of the dotted border. See [FDottedLineCorner] for details|
-|child|Widget|false|null|If [child] is set, [FDottedLine] will serve as the dotted border of [child].At this time, [width] and [height] will no longer be valid.|
+|color|Color|false|`Colors.black`|虚线颜色|
+|height|double|false|null|高。如果只有 [height]，而没有 [width]，将获得一个垂直方向的虚线。如果同时有 [width] 和 [height]，将获得一个虚线边框。|
+|width|double|false|null|宽。如果只有 [width]，而没有 [height]，将获得一个水平方向的虚线。如果同时有 [width] 和 [height]，将获得一个虚线边框。|
+|strokeWidth|double|false|1.0|虚线的厚度|
+|dottedLength|double|false|5.0|虚线中每一小段的长|
+|space|double|false|3.0|虚线中每段间的距离|
+|corner|FDottedLineCorner|false|null|虚线边框的边角。详见 [FDottedLineCorner]|
+|child|Widget|false|null|如果设置了 [child]，[FDottedLine] 将会作为 [child] 的虚线边框。此时，[width] 和 [height] 将不再有效。|
 
 
-## 📺 Demo
+## 📺 使用示例
 
 ### 🔩 Horizontal Demo
 
@@ -100,13 +104,13 @@ FDottedLine(
 )
 ```
 
-It is very simple to create a horizontal dotted line through **FDottedLine**.
+通过  **FDottedLine**  创建一个水平虚线，异常简单。
 
-The developer only needs to set the `width` parameter, but not the `height` parameter, which is all the developer needs to do for this.
+开发者只需要设置  `width` 参数，而不设置  `height` 参数，这就是开发者为此所要做的所有事情。
 
-If you want to control the thickness of the dotted line, set `strokeWidth`.
+如果想要控制虚线的厚度，设置  `strokeWidth` 就好了。
 
-Through the `dottedLength` and `space` parameters, developers can freely control the length of each small segment in the dotted line and the distance between them.
+通过 `dottedLength` 和 `space` 参数，开发者可以自由控制虚线中每一小段的长度，以及它们之间的距离。
 
 ### ⛓ Vertical Demo
 
@@ -122,9 +126,9 @@ FDottedLine(
 )
 ```
 
-If you want to create a dotted line in the vertical direction, it is also very simple.
+如果想要创建垂直方向的虚线，同样很简单。
 
-Developers only need to assign a value to `height` and leave `width` to be `null` or **0**.
+开发者只需要给   `height`  赋值，而让  `width` 保持为 `null` 或者  **0** 即可。
 
 ### 🔹 Dotted Shape Demo
 
@@ -141,9 +145,9 @@ FDottedLine(
 )
 ```
 
-**FDottedLine** can not only create simple dotted lines 🌝.
+ **FDottedLine**  可不仅仅只能创建简单的虚线 🌝。
 
-When developers assign values ​​to both width and height, they will be able to get a dotted rectangle! It's incredible.
+当开发者同时为  `width` 和  `height` 都赋值时，将能够获得一个虚线矩形！不可思议吧。
 
 ### 🌏 Corner Demo
 
@@ -158,12 +162,12 @@ FDottedLine(
   dottedLength: 10.0,
   space: 2.0,
   
-  /// Set corner
+  /// 设置边角
   corner: FDottedLineCorner.all(50),
 )
 ```
 
-With **FDottedLine**, developers can even create corner effects of dashed rectangles. For example: dotted rounded rectangle, dotted round...
+通过  **FDottedLine** ，开发者甚至可以创建出虚线矩形的边角效果。比如：虚线圆角矩形，虚线圆形..
 
 ### 🧩 Child Demo
 
@@ -177,7 +181,7 @@ FDottedLine(
   space: 3.0,
   corner: FDottedLineCorner.all(6.0),
   
-  /// add widget
+  /// 添加 widget
   child: Container(
     color: Colors.blue[100],
     width: 130,
@@ -188,9 +192,9 @@ FDottedLine(
 )
 ```
 
-In the past, it was very difficult to add a dotted border to a **Widget**. 
+在过去，想要为一个  **Widget** 添加虚线边框，事件十分困难的事情。因为官方没有为我们提供很好的解决方案。
 
-Because the official did not provide us with a good solution. But now, **FDottedLine** makes things easier than ever. Developers only need to use their **Widget** as a child of **FDottedLine**.
+但是现在， **FDottedLine**  让事情变得空前简单。开发者只需要将自己的  **Widget**  作为  **FDottedLine**  的  `child` 就行。
 
 ![](https://gw.alicdn.com/tfs/TB12HoXIYr1gK0jSZR0XXbP8XXa-360-333.png)
 
@@ -225,45 +229,46 @@ FDottedLine(
 )
 ```
 
-This also means that through the nesting of **FDottedLine**, many super interesting views can be created.
+这也就意味着，通过  **FDottedLine**  的嵌套，可以创建出很多超级有趣的视图。
 
 ### 💡 More Demo
 
 ![](https://gw.alicdn.com/tfs/TB17_wjI8r0gK0jSZFnXXbRRXXa-480-511.png)
 
-See what **FDottedLine** can do!
+看看  **FDottedLine**  都能干些什么！
 
-When there is such a simple way to create a dotted line, developers can freely build more wonderful views.
-
+当拥有了如此简单的方式创建虚线，开发者可以自由构建出更多精彩绝伦的视图。
 
 ![](https://gw.alicdn.com/tfs/TB1geStkIKfxu4jSZPfXXb3dXXa-720-227.gif)
 
-More about the application of FDottedLine, look forward to the exploration of developers 🔆.
+更多关于 FDottedLine 的应用，期待开发者们的探索 🔆。
 
-# 😃 How to use？
 
-Add dependencies in the project `pubspec.yaml` file:
+# 😃 如何使用？
 
-## 🌐 pub dependency
+在项目 `pubspec.yaml` 文件中添加依赖：
+
+## 🌐 pub 依赖方式
 
 ```
 dependencies:
-  fdottedline: ^<version number>
+  fdottedline: ^<版本号>
 ```
 
-> ⚠️ Attention，please go to [**pub**] (https://pub.dev/packages/fdottedline) to get the latest version number of **FDottedLine**
+> ⚠️ 注意，请到 [**pub**](https://pub.dev/packages/fdottedline) 获取 **FDottedLine** 最新版本号
 
-## 🖥 Git dependency
+## 🖥 git 依赖方式
 
 ```
 dependencies:
   fdottedline:
     git:
       url: 'git@github.com:Fliggy-Mobile/fdottedline.git'
-      ref: '<Branch number or tag number>'
+      ref: '<分支号 或 tag>'
 ```
 
-> ⚠️ Attention，please refer to [**FDottedLine**] (https://github.com/Fliggy-Mobile/fdottedline) official project for branch number or tag.
+
+> ⚠️ 注意，分支号 或 tag 请以 [**FDottedLine**](https://github.com/Fliggy-Mobile/fdottedline) 官方项目为准。
 
 
 # 💡 License
@@ -285,19 +290,20 @@ limitations under the License.
 
 ```
 
-### Like it? Please cast your [**Star**](https://github.com/Fliggy-Mobile/fdottedline) 🥰 ！
+
+### 感觉还不错？请投出您的 [**Star**](https://github.com/Fliggy-Mobile/fdottedline) 吧 🥰 ！
 
 
 ---
 
-# How to run Demo project?
+# 如何运行 Demo 工程？
 
-1.**clone** project to local
+1.**clone** 工程到本地
 
-2.Enter the project `example` directory and run the following command
+2.进入工程 `example` 目录，运行以下命令
 
 ```
 flutter create .
 ```
 
-3.Run the demo in `example`
+3.运行 `example` 中的 Demo

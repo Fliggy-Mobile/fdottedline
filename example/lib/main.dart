@@ -1,5 +1,11 @@
+import 'dart:ui';
+
+import 'package:fbutton/fbutton.dart';
+import 'package:fdottedline_example/color.dart';
+import 'package:fdottedline_example/part.dart';
 import 'package:flutter/material.dart';
 import 'package:fdottedline/fdottedline.dart';
+import 'package:fsuper/fsuper.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,38 +14,452 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
+  AnimationController animController8;
+  Animation<double> anim8;
+  bool forward = true;
+
   @override
   void initState() {
+    animController8 = AnimationController(vsync: this);
+    animController8.duration = Duration(milliseconds: 1000);
+    anim8 = Tween<double>(begin: 0.0, end: 200.0).animate(
+        CurvedAnimation(parent: animController8, curve: Curves.easeInOutQuint));
+    animController8.addStatusListener((status) {
+      if (status == AnimationStatus.forward) {
+        forward = !forward;
+      } else if (status == AnimationStatus.reverse) {
+        forward = !forward;
+      }
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Container(
-        color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(height: 100),
-            FDottedLine(
-              color: Colors.redAccent,
-              width: 200,
-              height: 1,
-              dottedLength: 10,
-            ),
-            const SizedBox(height: 20),
-            FDottedLine(
-              color: Colors.blue,
-              width: 1,
-              height: 200,
-              dottedLength: 5,
-              space: 10,
-            ),
-          ],
+      color: mainBackgroundColor,
+      home: Scaffold(
+        backgroundColor: mainBackgroundColor,
+        appBar: AppBar(
+          backgroundColor: mainBackgroundColor,
+          title: const Text(
+            'FDottedLine',
+            style: TextStyle(color: mainTextTitleColor),
+          ),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              buildTitle("Horizontal"),
+              buildBigMargin(),
+
+              /// demo1
+              buildDemo1(),
+              buildBigMargin(),
+              buildTitle("Vertical"),
+              buildBigMargin(),
+
+              /// demo2
+              buildDemo2(),
+
+              buildBigMargin(),
+              buildTitle("Shape"),
+              buildBigMargin(),
+
+              /// demo3
+              buildDemo3(),
+
+              buildBigMargin(),
+              buildTitle("Corner"),
+              buildBigMargin(),
+
+              /// demo4
+              buildDemo4(),
+
+              buildBigMargin(),
+              buildTitle("Child"),
+              buildBigMargin(),
+
+              /// demo5
+              buildDemo5(),
+
+              buildBigMargin(),
+
+              /// demo6
+              buildDemo6(),
+
+              buildBigMargin(),
+              buildTitle("More"),
+              buildBigMargin(),
+
+              /// demo7
+              buildDemo7(),
+
+              buildBigMargin(),
+              buildBigMargin(),
+
+              /// demo8
+              buildDemo8(),
+
+              buildBiggestMargin(),
+              buildBiggestMargin(),
+              buildBiggestMargin(),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  Widget buildDemo1() {
+    return FSuper(
+      width: 200,
+      height: 200,
+      backgroundColor: mainBackgroundColor,
+      child1: FDottedLine(
+        color: mainTextSubColor,
+        width: 160.0,
+        strokeWidth: 2.0,
+        dottedLength: 10.0,
+        space: 2.0,
+      ),
+      child1Alignment: Alignment.center,
+      shadowColor: mainShadowColor,
+      shadowBlur: 5.0,
+      shadowOffset: Offset(2.0, 2.0),
+      corner: Corner.all(9.0),
+    );
+  }
+
+  Widget buildDemo2() {
+    return FSuper(
+      width: 200,
+      height: 200,
+      backgroundColor: mainBackgroundColor,
+      child1: FDottedLine(
+        color: mainTextSubColor,
+        height: 160.0,
+        strokeWidth: 2.0,
+        dottedLength: 10.0,
+        space: 2.0,
+      ),
+      child1Alignment: Alignment.center,
+      shadowColor: mainShadowColor,
+      shadowBlur: 5.0,
+      shadowOffset: Offset(2.0, 2.0),
+      corner: Corner.all(9.0),
+    );
+  }
+
+  Widget buildDemo3() {
+    return FSuper(
+      width: MediaQueryData.fromWindow(window).size.width - 40.0,
+      height: 200,
+      backgroundColor: mainBackgroundColor,
+      child1: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          FDottedLine(
+            color: Colors.lightBlue[600],
+            height: 100.0,
+            width: 50,
+            strokeWidth: 2.0,
+            dottedLength: 10.0,
+            space: 2.0,
+          ),
+          FDottedLine(
+            color: Colors.red,
+            height: 50.0,
+            width: 100.0,
+            strokeWidth: 2.0,
+            dottedLength: 10.0,
+            space: 2.0,
+          ),
+          FDottedLine(
+            color: Colors.amber[600],
+            height: 100.0,
+            width: 100,
+            strokeWidth: 2.0,
+            dottedLength: 10.0,
+            space: 2.0,
+          ),
+        ],
+      ),
+      child1Alignment: Alignment.center,
+      shadowColor: mainShadowColor,
+      shadowBlur: 5.0,
+      shadowOffset: Offset(2.0, 2.0),
+      corner: Corner.all(9.0),
+    );
+  }
+
+  Widget buildDemo4() {
+    return FSuper(
+      width: MediaQueryData.fromWindow(window).size.width - 40.0,
+      height: 200,
+      backgroundColor: mainBackgroundColor,
+      child1: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          FDottedLine(
+            color: Colors.lightBlue[600],
+            height: 70.0,
+            width: 70.0,
+            strokeWidth: 2.0,
+            dottedLength: 10.0,
+            space: 2.0,
+            corner: FDottedLineCorner.all(50),
+          ),
+          FDottedLine(
+            color: Colors.green[600],
+            height: 70.0,
+            width: 70.0,
+            strokeWidth: 2.0,
+            dottedLength: 10.0,
+            space: 2.0,
+            corner: FDottedLineCorner(
+              leftTopCorner: 35.0,
+              rightTopCorner: 35.0,
+            ),
+          ),
+          FDottedLine(
+            color: Colors.red[600],
+            height: 70.0,
+            width: 70.0,
+            strokeWidth: 2.0,
+            dottedLength: 10.0,
+            space: 2.0,
+            corner: FDottedLineCorner.all(12),
+          ),
+        ],
+      ),
+      child1Alignment: Alignment.center,
+      shadowColor: mainShadowColor,
+      shadowBlur: 5.0,
+      shadowOffset: Offset(2.0, 2.0),
+      corner: Corner.all(9.0),
+    );
+  }
+
+  Widget buildDemo5() {
+    return FSuper(
+      width: 200,
+      height: 200,
+      backgroundColor: mainBackgroundColor,
+      child1: FDottedLine(
+        color: mainTextSubColor,
+        strokeWidth: 2.0,
+        dottedLength: 8.0,
+        space: 3.0,
+        child: Container(
+          color: Colors.blue[100],
+          width: 130,
+          height: 70,
+          alignment: Alignment.center,
+          child: Text(
+            "0873",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 5.0,
+            ),
+          ),
+        ),
+        corner: FDottedLineCorner.all(6.0),
+      ),
+      child1Alignment: Alignment.center,
+      shadowColor: mainShadowColor,
+      shadowBlur: 5.0,
+      shadowOffset: Offset(2.0, 2.0),
+      corner: Corner.all(9.0),
+    );
+  }
+
+  Widget buildDemo6() {
+    return FSuper(
+      width: 200,
+      height: 200,
+      backgroundColor: mainBackgroundColor,
+      child1: FDottedLine(
+        color: mainTextSubColor,
+        strokeWidth: 2.0,
+        dottedLength: 8.0,
+        space: 3.0,
+        corner: FDottedLineCorner.all(75.0),
+        child: Container(
+          width: 130,
+          height: 130,
+          alignment: Alignment.center,
+          child: FDottedLine(
+            color: mainTextSubColor,
+            strokeWidth: 2.0,
+            dottedLength: 8.0,
+            space: 3.0,
+            corner: FDottedLineCorner.all(20.0),
+            child: Container(
+              width: 43.0,
+              height: 43.0,
+              color: Colors.grey[900],
+            ),
+          ),
+        ),
+      ),
+      child1Alignment: Alignment.center,
+      shadowColor: mainShadowColor,
+      shadowBlur: 5.0,
+      shadowOffset: Offset(2.0, 2.0),
+      corner: Corner.all(9.0),
+    );
+  }
+
+  Widget buildDemo7() {
+    return FSuper(
+      width: 250,
+      height: 350,
+      backgroundColor: mainBackgroundColor,
+      child1: FDottedLine(
+        color: mainTextTitleColor,
+        height: 160.0,
+        strokeWidth: 2.0,
+        dottedLength: 8.0,
+        space: 3.0,
+        child: Container(
+          width: 150,
+          height: 250,
+          padding:
+              EdgeInsets.only(left: 10.0, right: 10.0, top: 18.0, bottom: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "BILL",
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 23.0,
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              buildBillItem("FSuper", "306"),
+              buildBillItem("FButton", "58"),
+              buildBillItem("FSwitch", "43"),
+              buildBillItem("FRadio", "38"),
+              buildBillItem("FFloat", "108"),
+              buildBillItem("FRefresh", "233"),
+              const SizedBox(height: 16.0),
+              FDottedLine(
+                color: mainTextTitleColor,
+                width: double.infinity,
+                dottedLength: 2.0,
+                strokeWidth: 5.0,
+                space: 2.0,
+              ),
+              const SizedBox(height: 10.0),
+              buildBillItem("Total", "786"),
+              const SizedBox(height: 25.0),
+              FSuper(
+                text: "Fliggy-Mobile",
+                textColor: mainTextTitleColor,
+                textSize: 10.0,
+                padding: EdgeInsets.only(left: 16.0),
+                child1: Image.asset(
+                  "assets/icon_logo.png",
+                  width: 15,
+                  height: 15,
+                ),
+                child1Alignment: Alignment.centerLeft,
+              ),
+            ],
+          ),
+        ),
+      ),
+      child1Alignment: Alignment.center,
+      shadowColor: mainShadowColor,
+      shadowBlur: 5.0,
+      shadowOffset: Offset(2.0, 2.0),
+      corner: Corner.all(9.0),
+    );
+  }
+
+  Widget buildBillItem(String title, String text) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+              color: mainTextTitleColor, fontSize: 13.0, height: 1.18),
+        ),
+        Text(
+          text,
+          style: TextStyle(
+              color: mainTextTitleColor, fontSize: 13.0, height: 1.18),
+        ),
+      ],
+    );
+  }
+
+  double w8 = 0.0;
+
+  VoidCallback listener8;
+
+  Widget buildDemo8() {
+    return StatefulBuilder(builder: (context, setState) {
+      if (listener8 == null) {
+        animController8.addListener(listener8 = () {
+          setState(() {});
+        });
+      }
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FSuper(
+            width: 200,
+            height: 60,
+            backgroundColor: Color(0xff64B5F6),
+            shadowBlur: 5.0,
+            shadowColor: mainShadowColor,
+            shadowOffset: Offset(3.0, 3.0),
+            corner: Corner.all(6.0),
+            child1: FDottedLine(
+              width: anim8.value,
+              strokeWidth: 10.0,
+              color: Colors.lightBlue[50],
+              dottedLength: 3.0,
+            ),
+            child1Alignment: Alignment.centerLeft,
+            child1Margin: EdgeInsets.only(top: 5.5),
+          ),
+          const SizedBox(width: 25.0),
+          FButton(
+            width: 50,
+            height: 50,
+            padding: EdgeInsets.zero,
+            corner: FButtonCorner.all(25),
+            color: Colors.red,
+            text: "Tread",
+            textColor: Colors.white,
+            fontSize: 15,
+            effect: true,
+            onPressed: () {
+              if (forward) {
+                animController8.forward();
+              } else {
+                animController8.reverse();
+              }
+            },
+          )
+        ],
+      );
+    });
   }
 }
