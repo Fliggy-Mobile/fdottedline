@@ -192,7 +192,7 @@ FDottedLine(
 )
 ```
 
-在过去，想要为一个  **Widget** 添加虚线边框，事件十分困难的事情。因为官方没有为我们提供很好的解决方案。
+在过去，想要为一个  **Widget** 添加虚线边框，是件十分困难的事情。因为官方没有为我们提供很好的解决方案。
 
 但是现在， **FDottedLine**  让事情变得空前简单。开发者只需要将自己的  **Widget**  作为  **FDottedLine**  的  `child` 就行。
 
@@ -241,7 +241,7 @@ FDottedLine(
 
 ![](https://gw.alicdn.com/tfs/TB1geStkIKfxu4jSZPfXXb3dXXa-720-227.gif)
 
-更多关于 FDottedLine 的应用，期待开发者们的探索 🔆。
+更多关于  **FDottedLine**  的应用，期待开发者们的探索 🔆。
 
 
 # 😃 如何使用？

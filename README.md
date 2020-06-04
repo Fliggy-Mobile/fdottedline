@@ -238,7 +238,7 @@ When there is such a simple way to create a dotted line, developers can freely b
 
 ![](https://gw.alicdn.com/tfs/TB1geStkIKfxu4jSZPfXXb3dXXa-720-227.gif)
 
-More about the application of FDottedLine, look forward to the exploration of developers 🔆.
+More about the application of  **FDottedLine** , look forward to the exploration of developers 🔆.
 
 # 😃 How to use？
 
