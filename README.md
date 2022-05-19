@@ -1,62 +1,20 @@
-<p align="center">
-  <a href="https://github.com/Fliggy-Mobile">
-    <img width="200" src="https://gw.alicdn.com/tfs/TB1a288sxD1gK0jSZFKXXcJrVXa-360-360.png">
-  </a>
-</p>
+# UPDATES
 
-<h1 align="center">fdottedline</h1>
+- Fixed bug in dotted line not showing for images.
 
+- Added null-safety support
 
-<div align="center">
+**Tested on flutter 3.0.0**
 
-<p>Use the easiest way to create a dotted line view 👀!</p>
+## Git dependency
 
-<p>[FDottedLine] provides developers with the ability to create dashed lines. It also supports creating a dashed border for a [Widget]. Support for controlling the thickness, spacing, and corners of the dotted border.</p>
-
-<p><strong>Author：<a href="https://github.com/chenBingX">Newton</a>(<a href="coorchice.cb@alibaba-inc.com">coorchice.cb@alibaba-inc.com</a>)</strong></p>
-
-<p>
-
-<a href="https://pub.dev/packages/fdottedline#-readme-tab-">
-    <img height="20" src="https://img.shields.io/badge/Version-1.0.1-important.svg">
-</a>
-
-
-<a href="https://github.com/Fliggy-Mobile/fdottedline">
-    <img height="20" src="https://img.shields.io/badge/Build-passing-brightgreen.svg">
-</a>
-
-
-<a href="https://github.com/Fliggy-Mobile">
-    <img height="20" src="https://img.shields.io/badge/Team-FAT-ffc900.svg">
-</a>
-
-<a href="https://www.dartcn.com/">
-    <img height="20" src="https://img.shields.io/badge/Language-Dart-blue.svg">
-</a>
-
-<a href="https://pub.dev/documentation/fdottedline/latest/fdottedline/fdottedline-library.html">
-    <img height="20" src="https://img.shields.io/badge/API-done-yellowgreen.svg">
-</a>
-
-<a href="http://www.apache.org/licenses/LICENSE-2.0.txt">
-   <img height="20" src="https://img.shields.io/badge/License-Apache--2.0-blueviolet.svg">
-</a>
-
-<p>
-<p>
-
-</div>
-
-<p align="center">
-  <a href="https://github.com/Fliggy-Mobile">
-    <img height="720" src="https://gw.alicdn.com/tfs/TB182cqI.z1gK0jSZLeXXb9kVXa-1380-1282.png">
-  </a>
-</p>
-
-**English | [简体中文](https://github.com/Fliggy-Mobile/fdottedline/blob/master/README_CN.md)**
-
-> Like it? Please cast your **Star**  🥰 ！
+```
+dependencies:
+  fdottedline:
+    git:
+      url: https://github.com/Karthick47v2/fdottedline.git
+      ref: img-fix
+```
 
 # ✨ Features
 
@@ -72,17 +30,16 @@
 
 ### 🔩 FDottedLine param
 
-|Param|Type|Necessary|Default|desc|
-|---|---|:---:|---|---|
-|color|Color|false|`Colors.black`|Dotted line color|
-|height|double|false|null|height. If there is only [height] and no [width], you will get a dotted line in the vertical direction.If there are both [width] and [height], you will get a dotted border.|
-|width|double|false|null|width. If there is only [width] and no [height], you will get a dotted line in the horizontal direction.If there are both [width] and [height], you will get a dotted border.|
-|strokeWidth|double|false|1.0|The thickness of the dotted line|
-|dottedLength|double|false|5.0|The length of each small segment in the dotted line|
-|space|double|false|3.0|The distance between each segment in the dotted line|
-|corner|FDottedLineCorner|false|null|The corners of the dotted border. See [FDottedLineCorner] for details|
-|child|Widget|false|null|If [child] is set, [FDottedLine] will serve as the dotted border of [child].At this time, [width] and [height] will no longer be valid.|
-
+| Param        | Type              | Necessary | Default        | desc                                                                                                                                                                          |
+| ------------ | ----------------- | :-------: | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| color        | Color             |   false   | `Colors.black` | Dotted line color                                                                                                                                                             |
+| height       | double            |   false   | null           | height. If there is only [height] and no [width], you will get a dotted line in the vertical direction.If there are both [width] and [height], you will get a dotted border.  |
+| width        | double            |   false   | null           | width. If there is only [width] and no [height], you will get a dotted line in the horizontal direction.If there are both [width] and [height], you will get a dotted border. |
+| strokeWidth  | double            |   false   | 1.0            | The thickness of the dotted line                                                                                                                                              |
+| dottedLength | double            |   false   | 5.0            | The length of each small segment in the dotted line                                                                                                                           |
+| space        | double            |   false   | 3.0            | The distance between each segment in the dotted line                                                                                                                          |
+| corner       | FDottedLineCorner |   false   | null           | The corners of the dotted border. See [FDottedLineCorner] for details                                                                                                         |
+| child        | Widget            |   false   | null           | If [child] is set, [FDottedLine] will serve as the dotted border of [child].At this time, [width] and [height] will no longer be valid.                                       |
 
 ## 📺 Demo
 
@@ -157,7 +114,7 @@ FDottedLine(
   strokeWidth: 2.0,
   dottedLength: 10.0,
   space: 2.0,
-  
+
   /// Set corner
   corner: FDottedLineCorner.all(50),
 )
@@ -176,7 +133,7 @@ FDottedLine(
   dottedLength: 8.0,
   space: 3.0,
   corner: FDottedLineCorner.all(6.0),
-  
+
   /// add widget
   child: Container(
     color: Colors.blue[100],
@@ -188,12 +145,11 @@ FDottedLine(
 )
 ```
 
-In the past, it was very difficult to add a dotted border to a **Widget**. 
+In the past, it was very difficult to add a dotted border to a **Widget**.
 
 Because the official did not provide us with a good solution. But now, **FDottedLine** makes things easier than ever. Developers only need to use their **Widget** as a child of **FDottedLine**.
 
 ![](https://gw.alicdn.com/tfs/TB12HoXIYr1gK0jSZR0XXbP8XXa-360-333.png)
-
 
 ```dart
 
@@ -235,10 +191,9 @@ See what **FDottedLine** can do!
 
 When there is such a simple way to create a dotted line, developers can freely build more wonderful views.
 
-
 ![](https://gw.alicdn.com/tfs/TB1geStkIKfxu4jSZPfXXb3dXXa-720-227.gif)
 
-More about the application of  **FDottedLine** , look forward to the exploration of developers 🔆.
+More about the application of **FDottedLine** , look forward to the exploration of developers 🔆.
 
 # 😃 How to use？
 
@@ -265,7 +220,6 @@ dependencies:
 
 > ⚠️ Attention，please refer to [**FDottedLine**] (https://github.com/Fliggy-Mobile/fdottedline) official project for branch number or tag.
 
-
 # 💡 License
 
 ```
@@ -286,7 +240,6 @@ limitations under the License.
 ```
 
 ### Like it? Please cast your [**Star**](https://github.com/Fliggy-Mobile/fdottedline) 🥰 ！
-
 
 ---
 
