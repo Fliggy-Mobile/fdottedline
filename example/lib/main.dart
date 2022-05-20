@@ -15,8 +15,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
-  late AnimationController animController8;
-  late Animation<double> anim8;
+  AnimationController animController8;
+  Animation<double> anim8;
   bool forward = true;
 
   @override
@@ -101,14 +101,14 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
               buildDemo7(),
 
               buildBigMargin(),
-
-              buildTitle("Image"),
               buildBigMargin(),
 
               /// demo8
               buildDemo8(),
 
-              buildBigMargin(),
+              buildBiggestMargin(),
+              buildBiggestMargin(),
+              buildBiggestMargin(),
             ],
           ),
         ),
@@ -166,7 +166,7 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
         mainAxisSize: MainAxisSize.max,
         children: [
           FDottedLine(
-            color: Colors.lightBlue.shade600,
+            color: Colors.lightBlue[600],
             height: 100.0,
             width: 50,
             strokeWidth: 2.0,
@@ -182,7 +182,7 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
             space: 2.0,
           ),
           FDottedLine(
-            color: Colors.amber.shade600,
+            color: Colors.amber[600],
             height: 100.0,
             width: 100,
             strokeWidth: 2.0,
@@ -209,7 +209,7 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
         mainAxisSize: MainAxisSize.max,
         children: [
           FDottedLine(
-            color: Colors.lightBlue.shade600,
+            color: Colors.lightBlue[600],
             height: 70.0,
             width: 70.0,
             strokeWidth: 2.0,
@@ -218,7 +218,7 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
             corner: FDottedLineCorner.all(50),
           ),
           FDottedLine(
-            color: Colors.green.shade600,
+            color: Colors.green[600],
             height: 70.0,
             width: 70.0,
             strokeWidth: 2.0,
@@ -230,7 +230,7 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
             ),
           ),
           FDottedLine(
-            color: Colors.red.shade600,
+            color: Colors.red[600],
             height: 70.0,
             width: 70.0,
             strokeWidth: 2.0,
@@ -408,24 +408,58 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
     );
   }
 
+  double w8 = 0.0;
+
+  VoidCallback listener8;
+
   Widget buildDemo8() {
-    return FSuper(
-      width: 200,
-      height: 200,
-      backgroundColor: mainBackgroundColor,
-      child1: FDottedLine(
-        child: Image.asset(
-          'assets/icon_logo.png',
-        ),
-        dottedLength: 8.0,
-        space: 3.0,
-        corner: FDottedLineCorner.all(6.0),
-      ),
-      child1Alignment: Alignment.center,
-      shadowColor: mainShadowColor,
-      shadowBlur: 5.0,
-      shadowOffset: Offset(2.0, 2.0),
-      corner: Corner.all(9.0),
-    );
+    return StatefulBuilder(builder: (context, setState) {
+      if (listener8 == null) {
+        animController8.addListener(listener8 = () {
+          setState(() {});
+        });
+      }
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FSuper(
+            width: 200,
+            height: 60,
+            backgroundColor: Color(0xff64B5F6),
+            shadowBlur: 5.0,
+            shadowColor: mainShadowColor,
+            shadowOffset: Offset(3.0, 3.0),
+            corner: Corner.all(6.0),
+            child1: FDottedLine(
+              width: anim8.value,
+              strokeWidth: 10.0,
+              color: Colors.lightBlue[50],
+              dottedLength: 3.0,
+            ),
+            child1Alignment: Alignment.centerLeft,
+            child1Margin: EdgeInsets.only(top: 5.5),
+          ),
+          const SizedBox(width: 25.0),
+          FButton(
+            width: 50,
+            height: 50,
+            padding: EdgeInsets.zero,
+            corner: FButtonCorner.all(25),
+            color: Colors.red,
+            text: "Tread",
+            textColor: Colors.white,
+            fontSize: 15,
+            effect: true,
+            onPressed: () {
+              if (forward) {
+                animController8.forward();
+              } else {
+                animController8.reverse();
+              }
+            },
+          )
+        ],
+      );
+    });
   }
 }
