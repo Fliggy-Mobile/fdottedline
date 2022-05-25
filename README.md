@@ -1,63 +1,21 @@
-<p align="center">
-  <a href="https://github.com/Fliggy-Mobile">
-    <img width="200" src="https://gw.alicdn.com/tfs/TB1a288sxD1gK0jSZFKXXcJrVXa-360-360.png">
-  </a>
-</p>
+# UPDATES
 
-<h1 align="center">fdottedline</h1>
+- Fixed bug in dotted line not showing for images.
+
+- Added null-safety support
 
 
-<div align="center">
+**Tested on flutter 3.0.0**
 
-<p>Use the easiest way to create a dotted line view 👀!</p>
+## Git dependency
 
-<p>[FDottedLine] provides developers with the ability to create dashed lines. It also supports creating a dashed border for a [Widget]. Support for controlling the thickness, spacing, and corners of the dotted border.</p>
-
-<p><strong>Author：<a href="https://github.com/chenBingX">Newton</a>(<a href="coorchice.cb@alibaba-inc.com">coorchice.cb@alibaba-inc.com</a>)</strong></p>
-
-<p>
-
-<a href="https://pub.dev/packages/fdottedline#-readme-tab-">
-    <img height="20" src="https://img.shields.io/badge/Version-1.0.1-important.svg">
-</a>
-
-
-<a href="https://github.com/Fliggy-Mobile/fdottedline">
-    <img height="20" src="https://img.shields.io/badge/Build-passing-brightgreen.svg">
-</a>
-
-
-<a href="https://github.com/Fliggy-Mobile">
-    <img height="20" src="https://img.shields.io/badge/Team-FAT-ffc900.svg">
-</a>
-
-<a href="https://www.dartcn.com/">
-    <img height="20" src="https://img.shields.io/badge/Language-Dart-blue.svg">
-</a>
-
-<a href="https://pub.dev/documentation/fdottedline/latest/fdottedline/fdottedline-library.html">
-    <img height="20" src="https://img.shields.io/badge/API-done-yellowgreen.svg">
-</a>
-
-<a href="http://www.apache.org/licenses/LICENSE-2.0.txt">
-   <img height="20" src="https://img.shields.io/badge/License-Apache--2.0-blueviolet.svg">
-</a>
-
-<p>
-<p>
-
-</div>
-
-<p align="center">
-  <a href="https://github.com/Fliggy-Mobile">
-    <img height="720" src="https://gw.alicdn.com/tfs/TB182cqI.z1gK0jSZLeXXb9kVXa-1380-1282.png">
-  </a>
-</p>
-
-**English | [简体中文](https://github.com/Fliggy-Mobile/fdottedline/blob/master/README_CN.md)**
-
-> Like it? Please cast your **Star**  🥰 ！
-
+```
+dependencies:
+  fdottedline:
+    git:
+      url: https://github.com/Karthick47v2/fdottedline.git
+      ref: img-fix
+```
 # ✨ Features
 
 - Supports dotted lines in both horizontal and vertical directions
