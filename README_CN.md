@@ -1,7 +1,7 @@
 ---
 # 文档可用dumi的markdown增强语法（https://d.umijs.org/guide/markdown）
 title: fdottedline
-subtitle: 可以跨动态包进行通信的广播系统
+subtitle: 用最简单的方式来创建虚线视图吧 👀 ！
 toc: content
 group:
   title: 样式 # 此处填写：组件所属的分组："通用","工具","样式","布局","导航","弹窗","数据录入","数据展示","反馈","其他"
