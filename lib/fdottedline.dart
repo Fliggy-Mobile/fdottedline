@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-bool _isEmpty(double d) {
+bool _isEmpty(double? d) {
   return d == null || d == 0.0;
 }
 
@@ -35,7 +35,7 @@ class FDottedLineCorner {
         leftBottomCorner = radius;
 }
 
-class FDottedLine extends StatefulWidget {
+class FDottedLine extends StatelessWidget {
   /// 虚线颜色
   ///
   /// Dotted line color
@@ -46,14 +46,14 @@ class FDottedLine extends StatefulWidget {
   ///
   /// height. If there is only [height] and no [width], you will get a dotted line in the vertical direction
   /// If there are both [width] and [height], you will get a dotted border.
-  final double height;
+  final double? height;
 
   /// 宽。如果只有 [width]，而没有 [height]，将获得一个水平方向的虚线
   /// 如果同时有 [width] 和 [height]，将获得一个虚线边框。
   ///
   /// width. If there is only [width] and no [height], you will get a dotted line in the horizontal direction
   /// If there are both [width] and [height], you will get a dotted border.
-  final double width;
+  final double? width;
 
   /// 虚线的厚度
   ///
@@ -73,20 +73,20 @@ class FDottedLine extends StatefulWidget {
   /// 虚线边框的边角。详见 [FDottedLineCorner]
   ///
   /// The corners of the dotted border. See [FDottedLineCorner] for details
-  final FDottedLineCorner corner;
+  final FDottedLineCorner? corner;
 
   /// 如果设置了 [child]，[FDottedLine] 将会作为 [child] 的虚线边框。
   /// 此时，[width] 和 [height] 将不再有效。
   ///
   /// If [child] is set, [FDottedLine] will serve as the dotted border of [child].
   /// At this time, [width] and [height] will no longer be valid.
-  final Widget child;
+  final Widget? child;
 
   /// [FDottedLine] 为开发者提供了创建虚线的能力。同时支持为一个 [Widget] 创建虚线边框。支持控制虚线的粗细，间距，以及虚线边框的边角。
   ///
   /// [FDottedLine] provides developers with the ability to create dashed lines. It also supports creating a dashed border for a [Widget]. Support for controlling the thickness, spacing, and corners of the dotted border.
   FDottedLine({
-    Key key,
+    Key? key,
     this.color = Colors.black,
     this.height,
     this.width,
@@ -100,91 +100,68 @@ class FDottedLine extends StatefulWidget {
   }
 
   @override
-  _FDottedLineState createState() => _FDottedLineState();
-}
-
-class _FDottedLineState extends State<FDottedLine> {
-  double childWidth;
-  double childHeight;
-  GlobalKey childKey = GlobalKey();
-
-  @override
   Widget build(BuildContext context) {
-    if (_isEmpty(widget.width) && _isEmpty(widget.height) && widget.child == null) return Container();
-    if (widget.child != null) {
-      tryToGetChildSize();
-      List<Widget> children = [];
-      children.add(Container(
-        clipBehavior: widget.corner == null ? Clip.none : Clip.antiAlias,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(
-                widget.corner != null ? widget.corner.leftTopCorner : 0.0),
-            topRight: Radius.circular(
-                widget.corner != null ? widget.corner.rightTopCorner : 0.0),
-            bottomLeft: Radius.circular(
-                widget.corner != null ? widget.corner.leftBottomCorner : 0.0),
-            bottomRight: Radius.circular(
-                widget.corner != null ? widget.corner.rightBottomCorner : 0.0),
+    if (_isEmpty(width) && _isEmpty(height) && child == null) return Container();
+    if (child != null) {
+      // [child] 被包裹在 [CustomPaint] 中，虚线边框通过
+      // [foregroundPainter] 绘制在 [child] 之上。当 [child] 的尺寸
+      // 发生变化时（例如网络图片加载完成），[CustomPaint] 会随之
+      // 重新布局并重绘，因此边框始终与 [child] 的实际尺寸保持一致。
+      //
+      // The [child] is wrapped in a [CustomPaint], and the dotted
+      // border is painted on top of it via [foregroundPainter].
+      // Whenever the size of the [child] changes (e.g. a network
+      // image finishes loading), the [CustomPaint] re-lays out and
+      // repaints accordingly, so the border always matches the
+      // actual size of the [child].
+      return CustomPaint(
+        foregroundPainter: _DottedLinePainter()
+          ..color = color
+          ..dottedLength = dottedLength
+          ..space = space
+          ..strokeWidth = strokeWidth
+          ..corner = corner
+          ..isShape = true,
+        child: Container(
+          clipBehavior: corner == null ? Clip.none : Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(corner?.leftTopCorner ?? 0.0),
+              topRight: Radius.circular(corner?.rightTopCorner ?? 0.0),
+              bottomLeft: Radius.circular(corner?.leftBottomCorner ?? 0.0),
+              bottomRight: Radius.circular(corner?.rightBottomCorner ?? 0.0),
+            ),
           ),
+          child: child,
         ),
-        key: childKey,
-        child: widget.child,
-      ));
-      if (childWidth != null && childHeight != null) {
-        children.add(dashPath(width: childWidth, height: childHeight));
-      }
-      return Stack(
-        children: children,
       );
     } else {
-      return dashPath(width: widget.width, height: widget.height);
+      return dashPath(width: width, height: height);
     }
   }
 
-  void tryToGetChildSize() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      try {
-        RenderBox box = childKey.currentContext.findRenderObject();
-        double tempWidth = box.size.width;
-        double tempHeight = box.size.height;
-        bool needUpdate = tempWidth != childWidth || tempHeight != childHeight;
-        if (needUpdate) {
-          setState(() {
-            childWidth = tempWidth;
-            childHeight = tempHeight;
-          });
-        }
-      } catch (e, stack) {}
-    });
-  }
-
-  CustomPaint dashPath({double width, double height}) {
+  CustomPaint dashPath({double? width, double? height}) {
     return CustomPaint(
-      size: Size(_isEmpty(width) ? widget.strokeWidth : width,
-          _isEmpty(height) ? widget.strokeWidth : height),
+      size: Size(_isEmpty(width) ? strokeWidth : width!,
+          _isEmpty(height) ? strokeWidth : height!),
       foregroundPainter: _DottedLinePainter()
-        ..color = widget.color
-        ..dottedLength = widget.dottedLength
-        ..space = widget.space
-        ..strokeWidth = widget.strokeWidth
-        ..corner = widget.corner
+        ..color = color
+        ..dottedLength = dottedLength
+        ..space = space
+        ..strokeWidth = strokeWidth
+        ..corner = corner
         ..isShape = !_isEmpty(height) && !_isEmpty(width),
     );
   }
 }
 
 class _DottedLinePainter extends CustomPainter {
-  Color color;
-  double dottedLength;
-  double space;
-  double strokeWidth;
-  bool isShape;
-  FDottedLineCorner corner;
-  Radius topLeft = Radius.zero;
-  Radius topRight = Radius.zero;
-  Radius bottomRight = Radius.zero;
-  Radius bottomLeft = Radius.zero;
+  Color color = Colors.black;
+  double dottedLength = 5.0;
+  double space = 3.0;
+  double strokeWidth = 1.0;
+  bool isShape = false;
+  FDottedLineCorner? corner;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -226,12 +203,10 @@ class _DottedLinePainter extends CustomPainter {
         0,
         size.width,
         size.height,
-        topLeft: Radius.circular(corner != null ? corner.leftTopCorner : 0.0),
-        topRight: Radius.circular(corner != null ? corner.rightTopCorner : 0.0),
-        bottomLeft:
-            Radius.circular(corner != null ? corner.leftBottomCorner : 0.0),
-        bottomRight:
-            Radius.circular(corner != null ? corner.rightBottomCorner : 0.0),
+        topLeft: Radius.circular(corner?.leftTopCorner ?? 0.0),
+        topRight: Radius.circular(corner?.rightTopCorner ?? 0.0),
+        bottomLeft: Radius.circular(corner?.leftBottomCorner ?? 0.0),
+        bottomRight: Radius.circular(corner?.rightBottomCorner ?? 0.0),
       ));
 
       Path draw = buildDashPath(path, dottedLength, space);
